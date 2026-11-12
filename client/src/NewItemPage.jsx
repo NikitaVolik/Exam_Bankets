@@ -92,7 +92,7 @@ export default function NewItemPage() {
           </select>
         </label>
         {error && <p className="form-error" role="alert">{error}</p>}
-        {message && <p className="form-message" role="status">{message} <a href="/">Мои записи</a></p>}
+        {message && <p className="form-message" role="status">{message} <a href="/">Мои банкеты</a></p>}
         <button className="btn" disabled={saving}>
           {saving ? "Сохранение.." : "Добавить"}
         </button>

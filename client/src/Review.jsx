@@ -71,7 +71,7 @@ export default function Review({ item }) {
         <button className="btn" disabled={saving}>
           {saving ? "Сохранение..." : "Сохранить отзыв"}
         </button>
-      </form> : <small>Отзыв доступен после завершения записи.</small>}
+      </form> : <small>Отзыв доступен после завершения банкета.</small>}
     </div>
   )
 }
