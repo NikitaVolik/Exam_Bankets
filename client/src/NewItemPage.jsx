@@ -70,6 +70,7 @@ export default function NewItemPage() {
           <input
             name="event_date"
             value={form.event_date}
+            placeholder="ДД.ММ.ГГГГ"
             onChange={change}
             required
             maxLength={10}

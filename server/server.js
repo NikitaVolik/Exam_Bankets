@@ -85,6 +85,20 @@ app.post("/api/register", async (req, res) => {
     errors.password = "Пароль должен занимать не более 72 байт в UTF-8"
   }
 
+  if (!full_name) {
+    errors.full_name = "Введите ФИО"
+  }
+
+  if (!phone_number) {
+    errors.phone_number = "Введите телефон"
+  }
+
+  if (!email) {
+    errors.email = "Введите email"
+  } else if (email.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.email = "Введите email в формате name@example.com"
+  }
+
   if (Object.keys(errors).length > 0) {
     return res.status(400).json({ message: "Проверьте поля", errors })
   }
@@ -168,8 +182,12 @@ app.post("/api/bankets", auth, async (req, res) => {
   const venueTypes = ["Зал", "Ресторан", "Летняя веранда", "Закрытая веранда"]
   const paymentMethods = ["Наличные", "Банковская карта"]
 
-  if (!venueTypes.includes(venue) || !event_date || !paymentMethods.includes(payment_method)) {
-    return res.status(400).json({ message: "Проверьте помещение, дату банкета и способ оплаты" })
+  if (!venueTypes.includes(venue) || !paymentMethods.includes(payment_method)) {
+    return res.status(400).json({ message: "Проверьте помещение и способ оплаты" })
+  }
+
+  if (!/^\d{2}\.\d{2}\.\d{4}$/.test(event_date)) {
+    return res.status(400).json({ message: "Введите корректную дату банкета" })
   }
 
   try {
