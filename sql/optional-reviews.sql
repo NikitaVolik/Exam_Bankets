@@ -1,0 +1,9 @@
+USE exam_bankets;
+
+CREATE TABLE IF NOT EXISTS reviews (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  banket_id INT NOT NULL UNIQUE,
+  comment VARCHAR(1000) NOT NULL DEFAULT '',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (banket_id) REFERENCES bankets(id)
+);
